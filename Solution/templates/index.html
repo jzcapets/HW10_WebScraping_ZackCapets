@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--This is the css for the site-->
+
+<style>
+
+.container-fluid{
+background-color: #250D53;
+}
+
+.jumbotron{
+color: #FFFFFF;
+}
+
+.body{
+color: #d3d3d3
+}
+
+.staticheadline{
+font-size: 40px;
+font-weight: bold;
+text-align: center;
+}
+
+.topheadline{
+font-size: 30px;
+font-weight: bold;
+text-align: center;
+}
+
+.teaser{
+font-size: 20px;
+text-align: center;
+}
+
+.card{
+text-align: center;
+}
+
+.card-title{
+text-align: center;
+}
+
+.card-subtitle{
+text-align: center;
+}
+
+.card-body{
+text-align: center;
+}
+
+.card-text{
+text-align: center;
+}
+
+.btn{
+text-align: center;
+}
+
+h3[class*="card-title"] {
+text-align: center;
+}
+
+.card-title {
+text-align: center;
+font-weight: bold;
+}
+
+.table-responsive {
+margin-left: auto;
+margin-right: auto;
+display: inline-table;
+}
+
+.col-sm-12 {
+text-align: center;
+background-color: #ffffff
+}
+
+img[class*="card-img-top"] {
+max-width: 100%;
+}
+
+img {
+max-width: 100%;
+}
+
+
+</style>
+
+<!--declarations and whatnot-->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Welcome to Mars!</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<!--set up a container to hold the site title and link to refresh the scraped data-->
+<body>
+	<div class="container-fluid">
+		<div class="jumbotron text-center">
+		  <h1>THE OFFICIAL HOMEPAGE OF MARS</h1>
+		  <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Refresh Data!</a></p>
+		</div>
+	</div>
+
+<!--set up a container to hold the body content, i.e our scraped data-->
+	<div class="container"></div>
+		<div class="row">
+			<div class="col-sm-12">
+				<h2 class="staticheadline">Latest Mars News</h2>
+			</div>
+		</div>
+		
+		<!--scraped headline goes here-->
+		<div class="row">
+			<div class="col-sm-12">
+				<h3 class="topheadline">{{mars.headline}}</h3>
+			</div>
+		</div>
+		
+		<!--scraped teaser text goes here-->
+		<div class="row">
+			<div class="col-sm-12">
+				<p class="teaser">{{mars.teaser}}</p>
+			</div>
+		</div>
+		<br>
+		<br>
+		<!--scraped weather data from twitter goes here-->
+		<div class = "row">
+			<div class = "col-sm-12">
+				<div class = "card">
+						<div class = "card-body">
+							<h2 class="card-title">Today's Weather on Mars:</h2>
+									<h3 class="card-subtitle mb-2 text-muted">{{mars.weather}}</h3>
+						</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<!--scraped feature photo from JPL goes here-->
+		<div class = "row">
+			<div class = "col-sm-12">
+				<h2 class = "staticheadline">Featured Photo (Courtesy of JPL Labs)</h2>
+			</div>
+		</div>
+		<div class = "row">
+			<div class = "col-sm-12 featureimage">
+				<img src="{{mars.featureimage}}" alt="JPL Labs Featured Mars Photo">
+			</div>
+		</div>
+		<br>
+		<br>
+		<div class = "row">
+			<div class = "col-sm-12">
+				<h2 class = "staticheadline"> Mars vs. Earth </h2>
+			</div>
+		</div>
+		<br>
+		<div class = "row">
+			<div class = "col-sm-12" >
+				<div class = "table-responsive">
+					{{mars.marsfacts|safe}}
+				</div>
+			</div>	
+		</div>
+				
+		<!--Pics from USGS Astrogeology go here-->
+		<div class = "row">
+			<div class="col-sm-12">
+				<h2 class="staticheadline">Photos of Mars' Hemispheres</h2>
+			</div>
+		</div>
+			<br>
+		<div class = "row">
+			<div class="col-sm-6">
+				<div class="card"> 
+					<img class="card-img-top" src={{mars.pics.url[0]}} alt="Card image cap">
+						<div class="card-body">
+						<h3 class="card-title">{{mars.pics.title[0]}}</h3>
+						<p class="card-text">This is a photo of {{mars.pics.title[0]}} courtesy of USGS Astrogeology.</p>
+						<a href="{{mars.pics.url[0]}}" class="btn btn-primary">{{mars.pics.title[0]}}</a>
+						</div>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="card">
+					<img class="card-img-top" src={{mars.pics.url[1]}} alt="Card image cap">
+						<div class="card-body">
+						<h3 class="card-title">{{mars.pics.title[1]}}</h3>
+						<p class="card-text">This is a photo of {{mars.pics.title[1]}} courtesy of USGS Astrogeology.</p>
+						<a href="{{mars.pics.url[1]}}" class="btn btn-primary">{{mars.pics.title[1]}}</a>
+						</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class = "row">
+			<div class="col-sm-6">
+				<div class="card">
+					<img class="card-img-top" src={{mars.pics.url[2]}} alt="Card image cap" >
+						<div class="card-body">
+						<h3 class="card-title">{{mars.pics.title[2]}}</h3>
+						<p class="card-text">This is a photo of {{mars.pics.title[2]}} courtesy of USGS Astrogeology.</p>
+						<a href="{{mars.pics.url[2]}}" class="btn btn-primary">{{mars.pics.title[2]}}</a>
+						</div>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="card">
+					<img class="card-img-top" src={{mars.pics.url[3]}} alt="Card image cap">
+						<div class="card-body">
+						<h3 class="card-title">{{mars.pics.title[3]}}</h3>
+						<p class="card-text">This is a photo of {{mars.pics.title[3]}} courtesy of USGS Astrogeology.</p>
+						<a href="{{mars.pics.url[3]}}" class="btn btn-primary">{{mars.pics.title[1]}}</a>
+						</div>
+				</div>
+			</div>
+		</div>	
+	</div>
+</body>
+
+</html>
